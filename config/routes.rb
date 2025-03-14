@@ -4,6 +4,10 @@ Rails.application.routes.draw do
 
   # get "/your_first_screen" => "pages#first"
 
-  get("/", { :controller => "test", :action => "index" })
-  
+  # Test index
+  # get("/", { :controller => "test", :action => "index" })
+
+  # Live index
+  get("/", { :controller => "home", :action => "index" })
+
 end

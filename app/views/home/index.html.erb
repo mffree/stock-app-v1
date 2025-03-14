@@ -1,0 +1,44 @@
+
+<%#= @output %>
+
+<hr>
+
+<%= @shop_raw %>
+<hr>
+<%= @cava_raw %>
+<hr>
+
+<p><strong>Returning each data point manually</strong></p>
+<%= @shop_details %>
+<hr>
+<%= @shop_ticker %>
+<hr>
+<%= @shop_date %>
+<hr>
+<%= @shop_close %>
+<hr>
+
+<p><strong>Using a loop</strong></p>
+<% 
+  stocks_raw = [@shop_raw, @cava_raw]
+
+      stocks_raw.each do |stock_raw|
+        stock_parsed = JSON.parse(stock_raw)
+
+        stock_details = stock_parsed.fetch("results")[0]
+    
+        stock_ticker = stock_details.fetch("T")
+        stock_date_raw = stock_details.fetch("t")
+        stock_date = Time.at(stock_date_raw/1000).strftime("%m-%d-%Y") # Dividing by 1000 because the time is given in Unix milliseconds
+        stock_close = stock_details.fetch("c")
+%>
+<div>
+  <p>Ticker: <%= stock_ticker %></p>
+  <p>Date: <%= stock_date %></p>
+  <p>Close: $<%= stock_close %></p>
+</div>        
+<hr>
+
+<%
+      end
+%>
