@@ -25,6 +25,9 @@ class HomeController < ApplicationController
     @shop_date = Time.at(@shop_date_raw/1000).strftime("%m-%d-%Y") # Dividing by 1000 because the time is given in Unix milliseconds
     @shop_close = @shop_details.fetch("c")
 
+    # @cava_ticker = @cava_details.fetch("T")
+    
+
     
 
 
